@@ -100,13 +100,27 @@ abstract class BaseConstraints(protected val constraintSet: ConstraintSet) {
         }
     }
 
-    fun View.align(headView: View? = null, tailView: View? = null) {
+    fun View.alignWith(headView: View? = null, tailView: View? = null) {
         headView?.let {
             constraintSet.connect(this.id, antonymHead, headView.id, antonymHead )
         }
 
         tailView?.let {
             constraintSet.connect(this.id, antonymTail, tailView.id, antonymTail )
+        }
+    }
+
+    fun alignHead(vararg views: View) {
+        val first = views.first()
+        views.drop(1).forEach {
+            constraintSet.connect(it.id, antonymHead, first.id, antonymHead )
+        }
+    }
+
+    fun alignTail(vararg views: View) {
+        val first = views.first()
+        views.drop(1).forEach {
+            constraintSet.connect(it.id, antonymTail, first.id, antonymTail )
         }
     }
 
@@ -122,8 +136,18 @@ abstract class BaseConstraints(protected val constraintSet: ConstraintSet) {
         }
     }
 
-    inner class Chain(val chainType: Int, vararg views: View, val weightList: List<Float>?) {
+    inner class Chain(val chainType: Int, private vararg val views: View, val weightList: List<Float>?) {
         val viewIdList: List<Int> = views.map(View::getId)
+
+        fun alignHead() : Chain {
+            this@BaseConstraints.alignHead(*views)
+            return this
+        }
+
+        fun alignTail() : Chain {
+            this@BaseConstraints.alignTail(*views)
+            return this
+        }
     }
 
     inner class ChainWithLeftViewId(private val chain: Chain, leftView: ViewId) : ViewId(leftView.id) {

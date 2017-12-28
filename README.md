@@ -1,8 +1,8 @@
-# Anko Constraint Layout
+# Akmk (灰汁巻き)
 
 This library adds Constraint Layout DSL in Anko library. It is based on the `1.1.0-beta4` version of the library.
 
-## Usage
+## Usage([wiki](https://github.com/seisuke/akmk/wiki/Usage))
 
 Constraint Layout is defined and added to other ViewGroups in the same way as any other view in Anko:
 
@@ -22,7 +22,7 @@ anyViewGroupLayout {
         constraints({
             // view horizontal constraints definitions
             button1 - button2[dip(30)]
-            button2.align(button1)
+            alignTail(button1, button2)
         }, {
             // view vertical constraints definitions
             parent - button1 - parent
@@ -35,7 +35,7 @@ anyViewGroupLayout {
 
 ```gradle
 dependencies {
-    compile 'com.github.seisuke:akmk:0.1.0'
+    compile 'com.github.seisuke:akmk:0.2.0'
 }
 
 repositories {
@@ -53,7 +53,6 @@ repositories {
  
 ## TODO
 
- * Group 
  * Placeholders
  * Dimension DSL
  * Percent Dimensions

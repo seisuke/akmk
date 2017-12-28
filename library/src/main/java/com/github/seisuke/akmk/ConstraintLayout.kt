@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.support.annotation.FloatRange
 import android.support.constraint.ConstraintLayout
+import android.support.constraint.Group
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -118,6 +119,10 @@ internal object `$$Anko$Factories$ConstraintLayoutView` {
 fun ViewManager.guideline(): android.support.constraint.Guideline = guideline() {}
 inline fun ViewManager.guideline(init: (@AnkoViewDslMarker android.support.constraint.Guideline).() -> Unit): android.support.constraint.Guideline {
     return ankoView(`$$Anko$Factories$ConstraintLayoutView`.GUIDELINE, theme = 0) { init() }
+}
+
+fun _ConstraintLayout.group(vararg views: View): Group = ankoView(::Group, theme = 0) {
+    referencedIds = views.map(View::getId).toIntArray()
 }
 
 @PublishedApi

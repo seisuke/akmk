@@ -44,7 +44,7 @@ class MainActivity : Activity(), AnkoComponent<Context> {
                 text = "5"
             }.lparams(width = dip(50), height = 0)
 
-            val button6 = button {
+            button {
                 id = View.generateViewId()
                 text = "6"
             }.lparams {
@@ -68,15 +68,14 @@ class MainActivity : Activity(), AnkoComponent<Context> {
             constraints({
                 guidelineBegin(dip(50)) - button1
                 button1 - button2[dip(30)] - button3[dip(30)]
-                button2.align(button1)
-                button3.align(button1)
+                alignTail(button1, button2, button3)
                 parent - button4 - parent
                 parent - textView1 - textView2
                 textView2.connectBaseline(textView1)
             }, {
                 parent - chainPacked(button1, button4, button5) - parent
-                button4.align(button1)
-                button5.align(button1, button2)
+                button4.alignWith(button1)
+                button5.alignWith(button1, button2)
                 button5.ratio("h,1:2")
 
                 parent - textView1[dip(50)]

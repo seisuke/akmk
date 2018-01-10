@@ -24,6 +24,10 @@ abstract class BaseConstraints(protected val constraintSet: ConstraintSet) {
     }
 
     open class ViewId(val id: Int)
+    open class Parent : ViewId(ConstraintSet.PARENT_ID)
+    open class ViewIdWithMargin(viewId: Int, _margin: Pair<Int?, Int?>) : ViewId(viewId), WithMargin {
+        override val margin = _margin
+    }
 
     operator fun ViewId.minus(viewId: ViewId): ViewId {
         connect(this, viewId)
@@ -37,15 +41,14 @@ abstract class BaseConstraints(protected val constraintSet: ConstraintSet) {
     operator fun ViewId.minus(chain: Chain) = ChainWithLeftViewId(chain, this)
     operator fun View.minus(chain: Chain) = ViewId(this.id).minus(chain)
 
-    operator fun ViewId.get(margin: Pair<Int?, Int?>) = ViewIdWithMargin(this.id, margin)
-    operator fun View.get(margin: Pair<Int?, Int?>) = ViewId(this.id).get(margin)
-    operator fun ViewId.get(margin: Int) = ViewIdWithMargin(this.id, margin to null)
-    operator fun View.get(margin: Int) = ViewId(this.id).get(margin to null)
-
-    open class Parent : ViewId(ConstraintSet.PARENT_ID)
-    open class ViewIdWithMargin(viewId: Int, _margin: Pair<Int?, Int?>) : ViewId(viewId), WithMargin {
-        override val margin = _margin
+    operator fun Int.rem(view: View) = ViewIdWithMargin(view.id, this to null)
+    operator fun ViewId.rem(margin: Int) : ViewIdWithMargin {
+        val prevMargin = if (this is WithMargin) {
+            this.margin.first
+        } else null
+        return ViewIdWithMargin(this.id, prevMargin to margin)
     }
+    operator fun View.rem(margin: Int) = ViewIdWithMargin(this.id, null to margin)
 
     abstract fun View.bias(@FloatRange(from = 0.0, to = 1.0) bias: Float)
 

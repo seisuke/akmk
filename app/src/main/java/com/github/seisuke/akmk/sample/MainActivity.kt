@@ -67,7 +67,7 @@ class MainActivity : Activity(), AnkoComponent<Context> {
 
             constraints({
                 guidelineBegin(dip(50)) - button1
-                button1 - button2[dip(30)] - button3[dip(30)]
+                button1 - dip(30) % button2 - dip(30) % button3
                 alignTail(button1, button2, button3)
                 parent - button4 - parent
                 parent - textView1 - textView2
@@ -78,7 +78,7 @@ class MainActivity : Activity(), AnkoComponent<Context> {
                 button5.alignWith(button1, button2)
                 button5.ratio("h,1:2")
 
-                parent - textView1[dip(50)]
+                parent - dip(50) % textView1
             })
 
         }

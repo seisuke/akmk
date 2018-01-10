@@ -21,7 +21,7 @@ anyViewGroupLayout {
         
         constraints({
             // view horizontal constraints definitions
-            button1 - button2[dip(30)]
+            button1 - dip(30) % button2
             alignTail(button1, button2)
         }, {
             // view vertical constraints definitions
@@ -35,7 +35,7 @@ anyViewGroupLayout {
 
 ```gradle
 dependencies {
-    compile 'com.github.seisuke:akmk:0.2.0'
+    compile 'com.github.seisuke:akmk:0.3.0'
 }
 
 repositories {

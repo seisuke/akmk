@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import com.github.seisuke.akmk.constraintLayout
+import com.github.seisuke.akmk.circularPosition
 import com.github.seisuke.akmk.constraints
 import org.jetbrains.anko.*
+import org.jetbrains.anko.constraint.layout.constraintLayout
+import org.jetbrains.anko.constraint.layout.matchConstraint
 
 class MainActivity : Activity(), AnkoComponent<Context> {
 

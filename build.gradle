@@ -4,7 +4,7 @@ buildscript {
     ext.akmk_version = '0.2.0'
 
     ext.kotlin_version = '1.2.0'
-    ext.anko_version = '0.10.3'
+    ext.anko_version = '0.10.4'
     repositories {
         google()
         jcenter()

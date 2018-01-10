@@ -7,6 +7,8 @@ import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
 import android.support.constraint.Guideline
 import android.view.View
+import org.jetbrains.anko.constraint.layout._ConstraintLayout
+import org.jetbrains.anko.constraint.layout.guideline
 import org.jetbrains.anko.custom.ankoView
 
 abstract class BaseConstraints(protected val constraintSet: ConstraintSet) {

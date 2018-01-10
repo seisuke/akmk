@@ -1,7 +1,10 @@
 package com.github.seisuke.akmk
 
+import android.support.annotation.FloatRange
+import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
 import android.view.View
+import org.jetbrains.anko.constraint.layout._ConstraintLayout
 
 fun _ConstraintLayout.constraints(horizontal: HorizontalConstraints.() -> Unit = {},
                                   vertical: VerticalConstraints.() -> Unit = {} ): ConstraintSet {
@@ -51,5 +54,11 @@ class VerticalConstraints(constraintSet: ConstraintSet) : BaseConstraints(constr
     override fun createChain(leftId: ViewId, rightId: ViewId, viewIdList: IntArray, weightList: FloatArray, chainType: Int) {
         constraintSet.createVerticalChain(leftId.id, head, rightId.id, tail, viewIdList, weightList, chainType)
     }
+}
+
+fun ConstraintLayout.LayoutParams.circularPosition(view: View, radius: Int, @FloatRange(from = 0.0, to = 360.0) angle: Float) {
+    circleConstraint = view.id
+    circleRadius = radius
+    circleAngle = angle
 }
 

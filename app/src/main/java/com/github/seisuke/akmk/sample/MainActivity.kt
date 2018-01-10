@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import com.github.seisuke.akmk.constraintLayout
+import com.github.seisuke.akmk.circularPosition
 import com.github.seisuke.akmk.constraints
 import org.jetbrains.anko.*
+import org.jetbrains.anko.constraint.layout.constraintLayout
+import org.jetbrains.anko.constraint.layout.matchConstraint
 
 class MainActivity : Activity(), AnkoComponent<Context> {
 
@@ -67,7 +69,7 @@ class MainActivity : Activity(), AnkoComponent<Context> {
 
             constraints({
                 guidelineBegin(dip(50)) - button1
-                button1 - button2[dip(30)] - button3[dip(30)]
+                button1 - dip(30) % button2 - dip(30) % button3
                 alignTail(button1, button2, button3)
                 parent - button4 - parent
                 parent - textView1 - textView2
@@ -78,7 +80,7 @@ class MainActivity : Activity(), AnkoComponent<Context> {
                 button5.alignWith(button1, button2)
                 button5.ratio("h,1:2")
 
-                parent - textView1[dip(50)]
+                parent - dip(50) % textView1
             })
 
         }

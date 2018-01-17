@@ -1,10 +1,10 @@
 # Akmk (灰汁巻き)
 
-This library adds Constraint Layout DSL in Anko library. It is based on the `1.1.0-beta4` version of the library.
+This library adds ConstraintLayout DSL in Anko library. It is based on the `1.1.0-beta4` version of the library.
 
 ## Usage([wiki](https://github.com/seisuke/akmk/wiki/Usage))
 
-Constraint Layout is defined and added to other ViewGroups in the same way as any other view in Anko:
+ConstraintLayout is defined and added to other ViewGroups in the same way as any other view in Anko:
 
 ```kotlin
 anyViewGroupLayout {
